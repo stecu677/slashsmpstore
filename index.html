@@ -18,27 +18,20 @@
 
   :root {
     --bg: #050a1f;
-    --bg-2: #0a1535;
     --surface: rgba(20, 35, 78, 0.4);
     --surface-2: rgba(30, 50, 105, 0.5);
     --border: rgba(80, 130, 220, 0.15);
     --border-bright: rgba(80, 150, 255, 0.35);
-
     --text: #eef4ff;
     --text-dim: #a3b3d6;
     --text-dimmer: #6b7da8;
-
     --blue: #3b82f6;
     --blue-bright: #60a5fa;
     --blue-deep: #1d4ed8;
     --cyan: #22d3ee;
-
-    --glow: 0 0 40px rgba(59, 130, 246, 0.35);
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
@@ -51,7 +44,6 @@
     position: relative;
   }
 
-  /* Ambient background */
   body::before {
     content: '';
     position: fixed;
@@ -64,7 +56,6 @@
     z-index: 0;
   }
 
-  /* Grid overlay */
   body::after {
     content: '';
     position: fixed;
@@ -81,7 +72,7 @@
 
   body > * { position: relative; z-index: 1; }
 
-  /* ===== NAVBAR ===== */
+  /* NAVBAR */
   nav {
     position: sticky;
     top: 0;
@@ -108,7 +99,6 @@
     font-weight: 800;
     font-size: 17px;
     letter-spacing: -0.02em;
-    color: var(--text);
   }
 
   .logo-mark {
@@ -142,11 +132,7 @@
     background-clip: text;
   }
 
-  .nav-links {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
 
   .nav-links a {
     color: var(--text-dim);
@@ -158,10 +144,7 @@
     transition: all 0.2s ease;
   }
 
-  .nav-links a:hover {
-    color: var(--text);
-    background: var(--surface);
-  }
+  .nav-links a:hover { color: var(--text); background: var(--surface); }
 
   .nav-links a.discord {
     color: var(--text);
@@ -175,13 +158,8 @@
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
   }
 
-  /* ===== HERO ===== */
-  .hero {
-    padding: 100px 24px 70px;
-    text-align: center;
-    max-width: 860px;
-    margin: 0 auto;
-  }
+  /* HERO */
+  .hero { padding: 100px 24px 70px; text-align: center; max-width: 860px; margin: 0 auto; }
 
   .badge {
     display: inline-flex;
@@ -219,7 +197,6 @@
     letter-spacing: -0.035em;
     line-height: 1.05;
     margin-bottom: 20px;
-    color: var(--text);
   }
 
   .hero h1 .gradient {
@@ -269,21 +246,12 @@
     transition: transform 0.2s;
   }
 
-  .ip-pill:hover .copy-icon {
-    transform: scale(1.15);
-  }
+  .ip-pill:hover .copy-icon { transform: scale(1.15); }
 
-  /* ===== SECTION ===== */
-  .section {
-    padding: 40px 24px 80px;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
+  /* SECTION */
+  .section { padding: 40px 24px 80px; max-width: 1180px; margin: 0 auto; }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 56px;
-  }
+  .section-header { text-align: center; margin-bottom: 56px; }
 
   .section-header .eyebrow {
     display: inline-block;
@@ -300,7 +268,6 @@
     font-weight: 800;
     letter-spacing: -0.03em;
     margin-bottom: 12px;
-    color: var(--text);
   }
 
   .section-header p {
@@ -310,7 +277,7 @@
     margin: 0 auto;
   }
 
-  /* ===== RANK GRID ===== */
+  /* RANK GRID */
   .rank-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -333,9 +300,7 @@
   .rank-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
     opacity: 0;
@@ -348,9 +313,7 @@
     box-shadow: 0 20px 60px rgba(59, 130, 246, 0.18);
   }
 
-  .rank-card:hover::before {
-    opacity: 1;
-  }
+  .rank-card:hover::before { opacity: 1; }
 
   .rank-card.featured {
     border-color: var(--border-bright);
@@ -366,18 +329,15 @@
   .rank-card.featured::after {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 100%;
-    height: 100%;
+    top: -50%; right: -50%;
+    width: 100%; height: 100%;
     background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
     pointer-events: none;
   }
 
   .rank-tag {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 20px; right: 20px;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -394,7 +354,6 @@
     font-weight: 700;
     letter-spacing: -0.015em;
     margin-bottom: 6px;
-    color: var(--text);
   }
 
   .rank-desc {
@@ -494,10 +453,8 @@
   .buy-btn::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
     transition: left 0.5s;
   }
@@ -508,13 +465,8 @@
     background: linear-gradient(135deg, var(--blue-bright) 0%, var(--blue) 100%);
   }
 
-  .buy-btn:hover::after {
-    left: 100%;
-  }
-
-  .buy-btn:active {
-    transform: translateY(0);
-  }
+  .buy-btn:hover::after { left: 100%; }
+  .buy-btn:active { transform: translateY(0); }
 
   .buy-btn.outline {
     background: rgba(59, 130, 246, 0.08);
@@ -530,7 +482,7 @@
     box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
   }
 
-  /* ===== VOTE BANNER ===== */
+  /* VOTE BANNER */
   .vote-banner {
     margin-top: 32px;
     padding: 40px 36px;
@@ -551,10 +503,8 @@
   .vote-banner::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -10%;
-    width: 60%;
-    height: 200%;
+    top: -50%; left: -10%;
+    width: 60%; height: 200%;
     background: radial-gradient(ellipse, rgba(34, 211, 238, 0.15) 0%, transparent 60%);
     pointer-events: none;
   }
@@ -564,17 +514,13 @@
     box-shadow: 0 20px 60px rgba(34, 211, 238, 0.2);
   }
 
-  .vote-content {
-    position: relative;
-    z-index: 1;
-  }
+  .vote-content { position: relative; z-index: 1; }
 
   .vote-content .vote-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border-radius: 11px;
     background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
     font-size: 20px;
@@ -587,7 +533,6 @@
     font-weight: 800;
     letter-spacing: -0.02em;
     margin-bottom: 8px;
-    color: var(--text);
   }
 
   .vote-content p {
@@ -621,11 +566,7 @@
     filter: brightness(1.1);
   }
 
-  .vote-btn:active {
-    transform: translateY(0);
-  }
-
-  /* ===== FOOTER ===== */
+  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 44px 24px;
@@ -644,15 +585,9 @@
     gap: 20px;
   }
 
-  .footer-text {
-    font-size: 13px;
-    color: var(--text-dimmer);
-  }
+  .footer-text { font-size: 13px; color: var(--text-dimmer); }
 
-  .footer-links {
-    display: flex;
-    gap: 24px;
-  }
+  .footer-links { display: flex; gap: 24px; }
 
   .footer-links a {
     color: var(--text-dim);
@@ -662,11 +597,9 @@
     font-weight: 500;
   }
 
-  .footer-links a:hover {
-    color: var(--blue-bright);
-  }
+  .footer-links a:hover { color: var(--blue-bright); }
 
-  /* ===== TOAST ===== */
+  /* TOAST */
   .toast {
     position: fixed;
     bottom: 28px;
@@ -691,15 +624,12 @@
     opacity: 1;
   }
 
-  /* ===== FADE IN ===== */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .fade-up {
-    animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
-  }
+  .fade-up { animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
 
   .rank-card { animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
   .rank-card:nth-child(1) { animation-delay: 0.05s; }
@@ -707,98 +637,33 @@
   .rank-card:nth-child(3) { animation-delay: 0.15s; }
   .rank-card:nth-child(4) { animation-delay: 0.2s; }
 
-  /* ===== RESPONSIVE ===== */
   @media (max-width: 720px) {
-    nav {
-      padding: 14px 16px;
-    }
-
-    .nav-links a {
-      padding: 7px 11px;
-      font-size: 13px;
-    }
-
-    .nav-links a.discord span {
-      display: none;
-    }
-
-    .hero {
-      padding: 64px 20px 48px;
-    }
-
-    .hero p {
-      font-size: 15px;
-    }
-
-    .ip-pill {
-      padding: 12px 18px;
-      font-size: 13px;
-    }
-
-    .section {
-      padding: 24px 16px 60px;
-    }
-
-    .section-header {
-      margin-bottom: 36px;
-    }
-
-    .rank-grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .rank-card {
-      padding: 24px 22px;
-    }
-
-    .vote-banner {
-      padding: 28px 22px;
-      flex-direction: column;
-      text-align: center;
-      align-items: stretch;
-    }
-
-    .vote-content .vote-icon {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .vote-content p {
-      margin: 0 auto;
-    }
-
-    .vote-btn {
-      justify-content: center;
-      width: 100%;
-    }
-
-    .footer-inner {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .footer-links {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-    }
+    nav { padding: 14px 16px; }
+    .nav-links a { padding: 7px 11px; font-size: 13px; }
+    .nav-links a.discord span { display: none; }
+    .hero { padding: 64px 20px 48px; }
+    .hero p { font-size: 15px; }
+    .ip-pill { padding: 12px 18px; font-size: 13px; }
+    .section { padding: 24px 16px 60px; }
+    .section-header { margin-bottom: 36px; }
+    .rank-grid { grid-template-columns: 1fr; gap: 16px; }
+    .rank-card { padding: 24px 22px; }
+    .vote-banner { padding: 28px 22px; flex-direction: column; text-align: center; align-items: stretch; }
+    .vote-content .vote-icon { margin-left: auto; margin-right: auto; }
+    .vote-content p { margin: 0 auto; }
+    .vote-btn { justify-content: center; width: 100%; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
   }
 
   @media (max-width: 380px) {
-    .logo-text {
-      font-size: 15px;
-    }
-
-    .rank-price {
-      font-size: 30px;
-    }
+    .logo-text { font-size: 15px; }
+    .rank-price { font-size: 30px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
 <nav>
   <div class="nav-inner">
     <div class="logo">
@@ -814,7 +679,6 @@
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
 <section class="hero">
   <div class="badge fade-up">
     <span class="badge-dot"></span>
@@ -833,7 +697,6 @@
   </div>
 </section>
 
-<!-- ===== RANKS ===== -->
 <section class="section" id="ranks">
   <div class="section-header">
     <div class="eyebrow">Rank Store</div>
@@ -843,7 +706,6 @@
 
   <div class="rank-grid">
 
-    <!-- Slash+ -->
     <div class="rank-card">
       <div class="rank-name">Slash+</div>
       <div class="rank-desc">Cocok untuk pemula</div>
@@ -860,7 +722,32 @@
       </a>
     </div>
 
-    <!-- The Warlord -->
     <div class="rank-card">
       <div class="rank-name">The Warlord</div>
-   
+      <div class="rank-desc">Untuk pejuang sejati</div>
+      <div class="rank-price">Rp 50.000<span>,00</span></div>
+      <div class="rank-period">Permanent</div>
+      <ul class="rank-features">
+        <li>Semua fitur Slash+</li>
+        <li>Prefix [Warlord]</li>
+        <li>Akses /kit warlord</li>
+        <li>5x Home + /fly di lobby</li>
+        <li>Warna chat merah</li>
+      </ul>
+      <a href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener" class="buy-btn outline">
+        Beli Sekarang
+      </a>
+    </div>
+
+    <div class="rank-card featured">
+      <div class="rank-tag">Popular</div>
+      <div class="rank-name">The King</div>
+      <div class="rank-desc">Penguasa server</div>
+      <div class="rank-price">Rp 75.000<span>,00</span></div>
+      <div class="rank-period">Permanent</div>
+      <ul class="rank-features">
+        <li>Semua fitur The Warlord</li>
+        <li>Prefix [King]</li>
+        <li>Akses /kit king</li>
+        <li>10x Home + /fly</li>
+        <l
