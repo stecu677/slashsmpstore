@@ -1,782 +1,866 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080d19">
-  <meta name="description" content="SlashSMP Store - Temukan rank premium untuk petualangan Minecraft kamu.">
-  <title>SlashSMP Store | Premium Ranks</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SlashSMP Store — Beli Rank Premium</title>
+<meta name="description" content="Upgrade pengalaman bermainmu di SlashSMP dengan rank premium. Slash+, The Warlord, The King, dan Custom Title.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  :root {
+    --bg: #050a1f;
+    --bg-2: #0a1535;
+    --surface: rgba(20, 35, 78, 0.4);
+    --surface-2: rgba(30, 50, 105, 0.5);
+    --border: rgba(80, 130, 220, 0.15);
+    --border-bright: rgba(80, 150, 255, 0.35);
 
-    :root {
-      --bg: #080d19;
-      --panel: #101a2d;
-      --blue: #3295ff;
-      --light-blue: #78bdff;
-      --text: #f4f8ff;
-      --muted: #91a1ba;
-      --border: rgba(102, 166, 255, .16);
+    --text: #eef4ff;
+    --text-dim: #a3b3d6;
+    --text-dimmer: #6b7da8;
+
+    --blue: #3b82f6;
+    --blue-bright: #60a5fa;
+    --blue-deep: #1d4ed8;
+    --cyan: #22d3ee;
+
+    --glow: 0 0 40px rgba(59, 130, 246, 0.35);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Ambient background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 50% 100%, rgba(29, 78, 216, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grid overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(80, 130, 220, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(80, 130, 220, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+  }
+
+  body > * { position: relative; z-index: 1; }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5, 10, 31, 0.7);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+  }
+
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
+    position: relative;
+  }
+
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    opacity: 0.3;
+    filter: blur(8px);
+    z-index: -1;
+  }
+
+  .logo-text span {
+    background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 9px;
+    transition: all 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  .nav-links a.discord {
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .nav-links a.discord:hover {
+    border-color: var(--border-bright);
+    background: var(--surface-2);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 100px 24px 70px;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 600;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+    letter-spacing: 0.02em;
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 6.5vw, 68px);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .hero h1 .gradient {
+    background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5));
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 540px;
+    margin: 0 auto 36px;
+    line-height: 1.65;
+  }
+
+  .ip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    background: var(--surface);
+    border: 1px solid var(--border-bright);
+    border-radius: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .ip-pill:hover {
+    background: var(--surface-2);
+    border-color: var(--blue-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.25);
+  }
+
+  .ip-pill .copy-icon {
+    color: var(--blue-bright);
+    font-size: 15px;
+    transition: transform 0.2s;
+  }
+
+  .ip-pill:hover .copy-icon {
+    transform: scale(1.15);
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 40px 24px 80px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .section-header .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 12px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(28px, 4.5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .section-header p {
+    color: var(--text-dim);
+    font-size: 15px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ===== RANK GRID ===== */
+  .rank-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .rank-card {
+    background: linear-gradient(180deg, rgba(20, 35, 78, 0.6) 0%, rgba(10, 21, 53, 0.6) 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+  }
+
+  .rank-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .rank-card:hover {
+    border-color: var(--border-bright);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.18);
+  }
+
+  .rank-card:hover::before {
+    opacity: 1;
+  }
+
+  .rank-card.featured {
+    border-color: var(--border-bright);
+    background: linear-gradient(180deg, rgba(30, 50, 105, 0.7) 0%, rgba(15, 30, 70, 0.7) 100%);
+    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.2);
+  }
+
+  .rank-card.featured::before {
+    opacity: 1;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  .rank-card.featured::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .rank-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    color: #ffffff;
+    border-radius: 100px;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
+  }
+
+  .rank-name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .rank-desc {
+    font-size: 12.5px;
+    color: var(--text-dimmer);
+    margin-bottom: 22px;
+  }
+
+  .rank-price {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, #ffffff 0%, #a3b3d6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .rank-price span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dimmer);
+    margin-left: 3px;
+    -webkit-text-fill-color: var(--text-dimmer);
+  }
+
+  .rank-period {
+    font-size: 12px;
+    color: var(--text-dimmer);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .rank-period::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
+  .rank-features {
+    list-style: none;
+    padding: 22px 0;
+    border-top: 1px solid var(--border);
+    margin-bottom: 22px;
+    flex-grow: 1;
+  }
+
+  .rank-features li {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    padding: 7px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .rank-features li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 4px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--border-bright);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3e%3cpath d='M2.5 6L5 8.5L9.5 4' stroke='%2360a5fa' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .buy-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 18px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .buy-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.55);
+    background: linear-gradient(135deg, var(--blue-bright) 0%, var(--blue) 100%);
+  }
+
+  .buy-btn:hover::after {
+    left: 100%;
+  }
+
+  .buy-btn:active {
+    transform: translateY(0);
+  }
+
+  .buy-btn.outline {
+    background: rgba(59, 130, 246, 0.08);
+    color: var(--blue-bright);
+    border: 1px solid var(--border-bright);
+    box-shadow: none;
+  }
+
+  .buy-btn.outline:hover {
+    background: rgba(59, 130, 246, 0.18);
+    border-color: var(--blue-bright);
+    color: #ffffff;
+    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+  }
+
+  /* ===== VOTE BANNER ===== */
+  .vote-banner {
+    margin-top: 32px;
+    padding: 40px 36px;
+    background: linear-gradient(135deg, rgba(30, 50, 105, 0.6) 0%, rgba(15, 30, 70, 0.6) 100%);
+    border: 1px solid var(--border-bright);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+  }
+
+  .vote-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(34, 211, 238, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .vote-banner:hover {
+    border-color: var(--cyan);
+    box-shadow: 0 20px 60px rgba(34, 211, 238, 0.2);
+  }
+
+  .vote-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .vote-content .vote-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+    font-size: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 8px 24px rgba(34, 211, 238, 0.4);
+  }
+
+  .vote-content h3 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .vote-content p {
+    font-size: 14px;
+    color: var(--text-dim);
+    max-width: 480px;
+  }
+
+  .vote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    box-shadow: 0 8px 28px rgba(34, 211, 238, 0.45);
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    position: relative;
+    z-index: 1;
+  }
+
+  .vote-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(34, 211, 238, 0.6);
+    filter: brightness(1.1);
+  }
+
+  .vote-btn:active {
+    transform: translateY(0);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 44px 24px;
+    margin-top: 60px;
+    background: rgba(5, 10, 31, 0.6);
+    backdrop-filter: blur(8px);
+  }
+
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--text-dimmer);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s ease;
+    font-weight: 500;
+  }
+
+  .footer-links a:hover {
+    color: var(--blue-bright);
+  }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(140px);
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    color: #ffffff;
+    padding: 13px 24px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 600;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    z-index: 200;
+    pointer-events: none;
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5);
+    border: 1px solid rgba(96, 165, 250, 0.5);
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  /* ===== FADE IN ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .rank-card { animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .rank-card:nth-child(1) { animation-delay: 0.05s; }
+  .rank-card:nth-child(2) { animation-delay: 0.1s; }
+  .rank-card:nth-child(3) { animation-delay: 0.15s; }
+  .rank-card:nth-child(4) { animation-delay: 0.2s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 720px) {
+    nav {
+      padding: 14px 16px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(24, 105, 220, .16), transparent 42%),
-        var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, 90%);
-      margin: auto;
-    }
-
-    /* NAVBAR */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(8, 13, 25, .88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -.6px;
-    }
-
-    .brand-icon {
-      width: 39px;
-      height: 39px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(145deg, #50b4ff, #1264df);
-      border-radius: 12px;
-      box-shadow: 0 0 24px rgba(50,149,255,.22);
-      font-size: 21px;
-    }
-
-    .brand span {
-      color: var(--light-blue);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 22px;
+    .nav-links a {
+      padding: 7px 11px;
       font-size: 13px;
-      font-weight: 600;
     }
 
-    .nav-link {
-      color: #b4c4da;
-      transition: color .2s;
+    .nav-links a.discord span {
+      display: none;
     }
 
-    .nav-link:hover {
-      color: white;
-    }
-
-    .discord-btn {
-      padding: 11px 16px;
-      border: 1px solid rgba(93, 164, 255, .35);
-      background: rgba(44, 126, 235, .1);
-      border-radius: 10px;
-      color: #d8ebff;
-      white-space: nowrap;
-    }
-
-    /* HERO */
     .hero {
-      padding: 84px 0 52px;
-      text-align: center;
-      position: relative;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      background: rgba(45, 141, 255, .08);
-      border: 1px solid rgba(67, 156, 255, .2);
-      border-radius: 100px;
-      color: #a8d4ff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 24px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      background: #47adff;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #3295ff;
-    }
-
-    .hero h1 {
-      font-size: clamp(39px, 7vw, 72px);
-      line-height: 1.06;
-      letter-spacing: -3px;
-      font-weight: 900;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #6dc1ff, #2585ff, #a0d8ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      padding: 64px 20px 48px;
     }
 
     .hero p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.9;
-      max-width: 490px;
-      margin: 20px auto 0;
+      font-size: 15px;
     }
 
-    .hero-actions {
-      margin-top: 28px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 14px 21px;
-      border-radius: 11px;
+    .ip-pill {
+      padding: 12px 18px;
       font-size: 13px;
-      font-weight: 800;
-      transition: transform .2s, box-shadow .2s, background .2s;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button-primary {
-      color: #fff;
-      background: linear-gradient(135deg, #399fff, #1764e8);
-      box-shadow: 0 8px 26px rgba(25, 111, 239, .22);
-    }
-
-    .button-primary:hover {
-      box-shadow: 0 10px 32px rgba(25, 111, 239, .38);
-    }
-
-    .button-secondary {
-      border: 1px solid var(--border);
-      background: #10192a;
-      color: #dceaff;
-    }
-
-    /* SECTION HEADING */
     .section {
-      padding: 35px 0 0;
+      padding: 24px 16px 60px;
     }
 
-    .section-heading {
-      text-align: center;
-      margin-bottom: 32px;
+    .section-header {
+      margin-bottom: 36px;
     }
 
-    .eyebrow {
-      color: #68b5ff;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(25px, 4vw, 34px);
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-
-    .section-heading p {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    /* RANK CARDS */
     .rank-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 17px;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
 
     .rank-card {
-      min-width: 0;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      padding: 24px 19px 20px;
-      border-radius: 17px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(43, 129, 235, .12), transparent 65%),
-        linear-gradient(160deg, #121e32, #0c1321 75%);
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-
-    .rank-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(71, 159, 255, .6);
-      box-shadow: 0 14px 35px rgba(0, 0, 0, .2);
-    }
-
-    .rank-card.king {
-      border-color: rgba(75, 157, 255, .48);
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(42, 133, 255, .24), transparent 65%),
-        linear-gradient(160deg, #142746, #0b1323 80%);
-    }
-
-    .rank-tag {
-      position: absolute;
-      top: 13px;
-      right: 13px;
-      color: #8dc8ff;
-      background: rgba(43, 142, 255, .12);
-      border: 1px solid rgba(75, 157, 255, .2);
-      border-radius: 6px;
-      padding: 5px 7px;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: .5px;
-    }
-
-    .rank-icon {
-      width: 57px;
-      height: 57px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(96, 173, 255, .23);
-      border-radius: 15px;
-      background: linear-gradient(145deg, #1c3c61, #10203a);
-      font-size: 28px;
-      margin-bottom: 23px;
-    }
-
-    .rank-card h3 {
-      font-size: 19px;
-      letter-spacing: -.5px;
-      margin-bottom: 9px;
-    }
-
-    .rank-desc {
-      min-height: 39px;
-      color: #91a1ba;
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .price-area {
-      margin: 22px 0 18px;
-      padding-top: 17px;
-      border-top: 1px solid rgba(255, 255, 255, .07);
-    }
-
-    .price-label {
-      color: #8496b0;
-      font-size: 10px;
-      margin-bottom: 7px;
-    }
-
-    .price {
-      color: #eaf5ff;
-      font-size: 23px;
-      font-weight: 900;
-      letter-spacing: -.8px;
-      white-space: nowrap;
-    }
-
-    .price small {
-      color: #a4b8d1;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .buy-button {
-      width: 100%;
-      margin-top: auto;
-      padding: 12px 8px;
-      text-align: center;
-      background: rgba(49, 139, 255, .11);
-      border: 1px solid rgba(65, 153, 255, .34);
-      border-radius: 9px;
-      color: #a8d5ff;
-      font-size: 11px;
-      font-weight: 800;
-      transition: .2s;
-    }
-
-    .buy-button:hover {
-      background: #2588f6;
-      border-color: #2588f6;
-      color: white;
-    }
-
-    .king .buy-button {
-      background: linear-gradient(135deg, #399fff, #1764e8);
-      color: white;
-      border-color: transparent;
-    }
-
-    /* VOTE BANNER */
-    .vote-wrap {
-      padding: 54px 0 76px;
+      padding: 24px 22px;
     }
 
     .vote-banner {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-      padding: 32px;
-      border: 1px solid rgba(74, 156, 255, .3);
-      border-radius: 19px;
-      background:
-        radial-gradient(ellipse at 100% 50%, rgba(35, 124, 244, .2), transparent 55%),
-        linear-gradient(120deg, #111f36, #0d1729);
+      padding: 28px 22px;
+      flex-direction: column;
+      text-align: center;
+      align-items: stretch;
     }
 
-    .vote-copy {
-      position: relative;
-      z-index: 1;
+    .vote-content .vote-icon {
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .vote-label {
-      display: inline-block;
-      color: #8fcaff;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.7px;
-      margin-bottom: 12px;
+    .vote-content p {
+      margin: 0 auto;
     }
 
-    .vote-banner h2 {
-      font-size: clamp(24px, 4vw, 33px);
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-    }
-
-    .vote-banner p {
-      max-width: 490px;
-      color: #9cacc4;
-      font-size: 12px;
-      line-height: 1.9;
-    }
-
-    .vote-button {
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      background: rgba(4, 8, 16, .45);
-      padding: 27px 0;
+    .vote-btn {
+      justify-content: center;
+      width: 100%;
     }
 
     .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .footer-brand span {
-      color: var(--blue);
-    }
-
-    .footer-note {
-      margin-top: 7px;
-      color: #71829b;
-      font-size: 10px;
-      line-height: 1.8;
+      flex-direction: column;
+      text-align: center;
     }
 
     .footer-links {
-      display: flex;
-      gap: 17px;
-      color: #a7b7ce;
-      font-size: 11px;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .logo-text {
+      font-size: 15px;
     }
 
-    .footer-links a:hover {
-      color: #78bdff;
+    .rank-price {
+      font-size: 30px;
     }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .rank-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .rank-card {
-        padding: 23px;
-      }
-
-      .rank-desc {
-        min-height: auto;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .container {
-        width: 91%;
-      }
-
-      .nav-inner {
-        min-height: 66px;
-      }
-
-      .brand {
-        font-size: 15px;
-        gap: 8px;
-      }
-
-      .brand-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 18px;
-      }
-
-      .nav-right {
-        gap: 11px;
-        font-size: 11px;
-      }
-
-      .discord-btn {
-        padding: 9px 10px;
-      }
-
-      .hero {
-        padding: 65px 0 40px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
-      }
-
-      .hero p {
-        font-size: 12px;
-      }
-
-      .section {
-        padding-top: 25px;
-      }
-
-      .section-heading {
-        margin-bottom: 23px;
-      }
-
-      .rank-grid {
-        gap: 11px;
-      }
-
-      .rank-card {
-        padding: 17px 13px 14px;
-        border-radius: 13px;
-      }
-
-      .rank-icon {
-        width: 46px;
-        height: 46px;
-        font-size: 23px;
-        border-radius: 12px;
-        margin-bottom: 17px;
-      }
-
-      .rank-card h3 {
-        font-size: 16px;
-      }
-
-      .rank-desc {
-        font-size: 10px;
-      }
-
-      .rank-tag {
-        top: 9px;
-        right: 8px;
-        font-size: 7px;
-        padding: 4px;
-      }
-
-      .price-area {
-        margin: 16px 0 14px;
-        padding-top: 13px;
-      }
-
-      .price {
-        font-size: clamp(17px, 4.7vw, 22px);
-      }
-
-      .price small {
-        font-size: 9px;
-      }
-
-      .buy-button {
-        padding: 11px 4px;
-        font-size: 10px;
-      }
-
-      .vote-wrap {
-        padding: 36px 0 53px;
-      }
-
-      .vote-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 25px 21px;
-        gap: 22px;
-      }
-
-      .vote-banner p {
-        font-size: 11px;
-      }
-
-      .vote-button {
-        width: 100%;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="#">
-        <div class="brand-icon">⚡</div>
-        <div>SLASH<span>SMP</span></div>
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">⚡</div>
+      <div class="logo-text">Slash<span>SMP</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#ranks">Rank</a>
+      <a href="https://discord.gg/JeKNG4wfkY" target="_blank" rel="noopener" class="discord">
+        Discord <span>↗</span>
       </a>
-
-      <nav class="nav-right">
-        <a class="nav-link" href="#ranks">Ranks</a>
-        <a class="discord-btn" href="https://discord.gg/JeKNG4wfkY" target="_blank" rel="noopener noreferrer">
-          Discord ↗
-        </a>
-      </nav>
     </div>
-  </header>
+  </div>
+</nav>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero container">
-      <div class="status">
-        <span class="status-dot"></span>
-        OFFICIAL SERVER STORE
-      </div>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="badge fade-up">
+    <span class="badge-dot"></span>
+    Server Online • 24/7
+  </div>
+  <h1 class="fade-up">
+    Tingkatkan Rankmu di<br>
+    <span class="gradient">SlashSMP</span>
+  </h1>
+  <p class="fade-up">
+    Dapatkan akses eksklusif, fitur premium, dan title spesial. Pilih rank yang paling cocok untuk gaya bermainmu.
+  </p>
+  <div class="ip-pill fade-up" onclick="copyIP()">
+    <span>slashsmp.my.id</span>
+    <span class="copy-icon">📋</span>
+  </div>
+</section>
 
-      <h1>
-        LEVEL UP YOUR<br>
-        <span class="gradient-text">SLASHSMP</span>
-      </h1>
+<!-- ===== RANKS ===== -->
+<section class="section" id="ranks">
+  <div class="section-header">
+    <div class="eyebrow">Rank Store</div>
+    <h2>Pilih Rank Kamu</h2>
+    <p>Harga terjangkau, benefit maksimal, dan berlaku permanen.</p>
+  </div>
 
-      <p>
-        Upgrade pengalaman bermainmu dengan rank eksklusif.
-        Pilih rank favoritmu dan jadilah bagian dari SlashSMP.
-      </p>
+  <div class="rank-grid">
 
-      <div class="hero-actions">
-        <a class="button button-primary" href="#ranks">Lihat Semua Rank ↓</a>
-        <a class="button button-secondary" href="https://discord.gg/JeKNG4wfkY" target="_blank" rel="noopener noreferrer">
-          💬 Gabung Discord
-        </a>
-      </div>
-    </section>
-
-    <!-- RANKS -->
-    <section class="section container" id="ranks">
-      <div class="section-heading">
-        <div class="eyebrow">THE COLLECTION</div>
-        <h2>Pilih <span class="gradient-text">Rank Kamu</span></h2>
-        <p>Temukan pilihan yang cocok untuk petualanganmu.</p>
-      </div>
-
-      <div class="rank-grid">
-
-        <!-- SLASH+ -->
-        <article class="rank-card">
-          <div class="rank-icon">⚔️</div>
-          <h3>Slash+</h3>
-          <p class="rank-desc">Mulai perjalananmu dengan rank eksklusif SlashSMP.</p>
-
-          <div class="price-area">
-            <div class="price-label">HARGA</div>
-            <div class="price">Rp15.000</div>
-          </div>
-
-          <a class="buy-button" href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener noreferrer">
-            BELI SEKARANG ↗
-          </a>
-        </article>
-
-        <!-- THE WARLORD -->
-        <article class="rank-card">
-          <div class="rank-icon">🔥</div>
-          <h3>The Warlord</h3>
-          <p class="rank-desc">Tunjukkan dominasi dan tingkatkan statusmu.</p>
-
-          <div class="price-area">
-            <div class="price-label">HARGA</div>
-            <div class="price">Rp50.000</div>
-          </div>
-
-          <a class="buy-button" href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener noreferrer">
-            BELI SEKARANG ↗
-          </a>
-        </article>
-
-        <!-- THE KING -->
-        <article class="rank-card king">
-          <div class="rank-tag">ELITE</div>
-          <div class="rank-icon">👑</div>
-          <h3>The King</h3>
-          <p class="rank-desc">Untuk pemain yang ingin tampil sebagai penguasa.</p>
-
-          <div class="price-area">
-            <div class="price-label">HARGA</div>
-            <div class="price">Rp75.000</div>
-          </div>
-
-          <a class="buy-button" href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener noreferrer">
-            BELI SEKARANG ↗
-          </a>
-        </article>
-
-        <!-- CUSTOM TITLE -->
-        <article class="rank-card">
-          <div class="rank-icon">✦</div>
-          <h3>Custom Title</h3>
-          <p class="rank-desc">Khusus custom title saja, tanpa tambahan rank.</p>
-
-          <div class="price-area">
-            <div class="price-label">HARGA</div>
-            <div class="price">Rp25.000</div>
-          </div>
-
-          <a class="buy-button" href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener noreferrer">
-            BELI SEKARANG ↗
-          </a>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- FREE RANK VOTE -->
-    <section class="vote-wrap container">
-      <div class="vote-banner">
-        <div class="vote-copy">
-          <div class="vote-label">✦ SUPPORT THE SERVER</div>
-          <h2>Ingin Rank <span class="gradient-text">Gratis?</span></h2>
-          <p>
-            Vote SlashSMP di Minecraft-MP sekarang!
-            Bantu server kita semakin ramai dan cek informasi
-            vote untuk mengetahui reward yang tersedia.
-          </p>
-        </div>
-
-        <a class="button button-primary vote-button"
-           href="https://minecraft-mp.com/server/364808/vote/"
-           target="_blank"
-           rel="noopener noreferrer">
-          🗳 VOTE SEKARANG ↗
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container footer-inner">
-      <div>
-        <div class="footer-brand">⚡ SLASH<span>SMP</span> STORE</div>
-        <p class="footer-note">
-          © 2026 SlashSMP. All rights reserved.<br>
-          Setelah membayar, hubungi staff melalui Discord dengan bukti pembayaran dan username Minecraft.
-        </p>
-      </div>
-
-      <div class="footer-links">
-        <a href="https://discord.gg/JeKNG4wfkY" target="_blank" rel="noopener noreferrer">Discord</a>
-        <a href="https://minecraft-mp.com/server/364808/vote/" target="_blank" rel="noopener noreferrer">Vote Server</a>
-      </div>
+    <!-- Slash+ -->
+    <div class="rank-card">
+      <div class="rank-name">Slash+</div>
+      <div class="rank-desc">Cocok untuk pemula</div>
+      <div class="rank-price">Rp 15.000<span>,00</span></div>
+      <div class="rank-period">Permanent</div>
+      <ul class="rank-features">
+        <li>Prefix [Slash+] di chat</li>
+        <li>Akses /kit slashplus</li>
+        <li>2x Home</li>
+        <li>Warna chat hijau</li>
+      </ul>
+      <a href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener" class="buy-btn outline">
+        Beli Sekarang
+      </a>
     </div>
-  </footer>
 
-</body>
-  </html>
-  
+    <!-- The Warlord -->
+    <div class="rank-card">
+      <div class="rank-name">The Warlord</div>
+   
