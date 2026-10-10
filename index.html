@@ -1,753 +1,798 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SlashSMP Store — Beli Rank Premium</title>
-<meta name="description" content="Upgrade pengalaman bermainmu di SlashSMP dengan rank premium. Slash+, The Warlord, The King, dan Custom Title.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#050b18">
+<title>SlashSMP Store</title>
+
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #1684ff;
+  --cyan: #38d9ff;
+  --bg: #050b18;
+  --text: #f4f8ff;
+  --muted: #9aabc5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #102e63 0%, transparent 48%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: auto;
+}
+
+/* NAVBAR */
+header {
+  border-bottom: 1px solid #1c3354;
+  background: rgba(5, 11, 24, .9);
+}
+
+.navbar {
+  min-height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--cyan);
+  text-shadow: 0 0 15px #1684ff;
+}
+
+.discord-top {
+  padding: 10px 17px;
+  border: 1px solid #287fff;
+  border-radius: 8px;
+  color: #a9d5ff;
+  font-size: 13px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.discord-top:hover {
+  background: #1265d8;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 85px 0 65px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #2059a1;
+  background: #0c2040;
+  color: var(--cyan);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 23px;
+}
+
+.hero h1 {
+  font-size: clamp(39px, 7vw, 72px);
+  line-height: 1.08;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: var(--cyan);
+  text-shadow: 0 0 30px #087bff80;
+}
+
+.hero p {
+  max-width: 510px;
+  margin: 22px auto 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.primary-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 25px;
+  color: white;
+  background: linear-gradient(110deg, #0875ff, #00bfff);
+  border-radius: 9px;
+  font-weight: bold;
+  font-size: 13px;
+  box-shadow: 0 0 25px #087bff35;
+  transition: .2s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px #087bff70;
+}
+
+/* RANK SECTION */
+.section {
+  padding: 15px 0 30px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 38px;
+}
+
+.section-title h2 {
+  font-size: clamp(27px, 4vw, 36px);
+  font-weight: 900;
+}
+
+.section-title p {
+  color: var(--muted);
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.rank-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 23px 18px 19px;
+  border: 1px solid #1c3354;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #10213d, #080f20 75%);
+  transition: .25s;
+}
+
+.rank-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #1684ff, transparent);
+  opacity: .5;
+}
+
+.rank-card:hover {
+  transform: translateY(-5px);
+  border-color: #248cff;
+  box-shadow: 0 12px 35px #006dff20;
+}
+
+.rank-card.popular {
+  border-color: #1684ff;
+  background: linear-gradient(160deg, #102d56, #081225 80%);
+  box-shadow: 0 0 25px #087bff18;
+}
+
+.rank-card.popular::before {
+  opacity: 1;
+  height: 3px;
+  background: linear-gradient(90deg, #1684ff, #38d9ff);
+}
+
+.rank-card.king {
+  border-color: #335b94;
+}
+
+.rank-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  margin-bottom: 20px;
+}
+
+.rank-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #24518b;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #123e76, #09172e);
+  font-size: 23px;
+  flex-shrink: 0;
+}
+
+.badge {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #087bff25;
+  border: 1px solid #238dff70;
+  color: #69caff;
+  font-size: 9px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.rank-card h3 {
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 9px;
+}
+
+.description {
+  min-height: 58px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.price-area {
+  margin-top: 18px;
+  padding-top: 17px;
+  border-top: 1px solid #1b3150;
+  margin-bottom: 18px;
+}
+
+.price-label {
+  color: #8298b8;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-size: 25px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.buy-btn {
+  display: block;
+  margin-top: auto;
+  padding: 12px 7px;
+  text-align: center;
+  color: #a8d9ff;
+  background: #10264a;
+  border: 1px solid #2864a9;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.buy-btn:hover {
+  background: #1265d8;
+  border-color: #38baff;
+  color: white;
+}
+
+.popular .buy-btn,
+.king .buy-btn {
+  color: white;
+  border: none;
+  background: linear-gradient(100deg, #0875ff, #00aaff);
+  box-shadow: 0 0 18px #087bff25;
+}
+
+.popular .buy-btn:hover,
+.king .buy-btn:hover {
+  box-shadow: 0 0 25px #087bff60;
+}
+
+/* VOTE SECTION */
+.vote-section {
+  padding: 40px 0 30px;
+}
+
+.vote-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 32px;
+  border: 1px solid #1e4779;
+  border-radius: 15px;
+  background:
+    radial-gradient(ellipse at right, #0d3c75 0%, transparent 60%),
+    linear-gradient(120deg, #0c1a31, #091225);
+}
+
+.vote-label {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.vote-box h2 {
+  font-size: clamp(24px, 4vw, 33px);
+  font-weight: 900;
+}
+
+.vote-box h2 span {
+  color: var(--cyan);
+}
+
+.vote-box p {
+  max-width: 520px;
+  margin-top: 11px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.vote-btn {
+  display: inline-block;
+  flex-shrink: 0;
+  padding: 14px 19px;
+  border-radius: 8px;
+  background: linear-gradient(100deg, #0875ff, #00bfff);
+  color: white;
+  font-size: 12px;
+  font-weight: 900;
+  transition: .2s;
+}
+
+.vote-btn:hover {
+  box-shadow: 0 0 25px #087bff60;
+}
+
+/* DISCORD SECTION */
+.discord-section {
+  padding: 30px 0 75px;
+}
+
+.discord-box {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 42px 22px;
+  border: 1px solid #24518b;
+  border-radius: 15px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #164b8d 0%, transparent 70%),
+    linear-gradient(135deg, #10264a, #080f20);
+  box-shadow: 0 0 30px #087bff15;
+}
+
+.discord-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 17px;
+  border: 1px solid #287fff;
+  border-radius: 16px;
+  background: #0b2041;
+  font-size: 28px;
+  box-shadow: 0 0 22px #087bff20;
+}
+
+.discord-box h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  font-weight: 900;
+}
+
+.discord-box h2 span {
+  color: var(--cyan);
+}
+
+.discord-box p {
+  max-width: 500px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.join-btn {
+  display: inline-block;
+  margin-top: 23px;
+  padding: 14px 24px;
+  border-radius: 8px;
+  color: white;
+  background: linear-gradient(100deg, #0875ff, #00bfff);
+  font-size: 12px;
+  font-weight: 900;
+  box-shadow: 0 0 20px #087bff25;
+  transition: .2s;
+}
+
+.join-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px #087bff60;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid #1c2e49;
+  padding: 25px 0;
+  background: #040914;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.footer-logo span {
+  color: var(--cyan);
+}
+
+.footer-note {
+  color: #72839d;
+  font-size: 10px;
+  line-height: 1.8;
+  margin-top: 7px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  color: #9aabc5;
+  font-size: 12px;
+}
+
+.footer-links a:hover {
+  color: var(--cyan);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .rank-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
 
-  :root {
-    --bg: #050a1f;
-    --surface: rgba(20, 35, 78, 0.4);
-    --surface-2: rgba(30, 50, 105, 0.5);
-    --border: rgba(80, 130, 220, 0.15);
-    --border-bright: rgba(80, 150, 255, 0.35);
-    --text: #eef4ff;
-    --text-dim: #a3b3d6;
-    --text-dimmer: #6b7da8;
-    --blue: #3b82f6;
-    --blue-bright: #60a5fa;
-    --blue-deep: #1d4ed8;
-    --cyan: #22d3ee;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 15px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 50% 100%, rgba(29, 78, 216, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(80, 130, 220, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(80, 130, 220, 0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-  }
-
-  body > * { position: relative; z-index: 1; }
-
-  /* NAVBAR */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(5, 10, 31, 0.7);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-  }
-
-  .nav-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+@media (max-width: 520px) {
+  .navbar {
+    min-height: 65px;
   }
 
   .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 17px;
-    letter-spacing: -0.02em;
+    font-size: 15px;
+    letter-spacing: 0;
   }
 
-  .logo-mark {
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
-    background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
-    position: relative;
+  .discord-top {
+    padding: 9px 11px;
+    font-size: 11px;
   }
 
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 11px;
-    background: linear-gradient(135deg, var(--blue), var(--cyan));
-    opacity: 0.3;
-    filter: blur(8px);
-    z-index: -1;
-  }
-
-  .logo-text span {
-    background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .nav-links { display: flex; gap: 6px; align-items: center; }
-
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 14px;
-    border-radius: 9px;
-    transition: all 0.2s ease;
-  }
-
-  .nav-links a:hover { color: var(--text); background: var(--surface); }
-
-  .nav-links a.discord {
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border);
-  }
-
-  .nav-links a.discord:hover {
-    border-color: var(--border-bright);
-    background: var(--surface-2);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
-  }
-
-  /* HERO */
-  .hero { padding: 100px 24px 70px; text-align: center; max-width: 860px; margin: 0 auto; }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 16px;
-    background: var(--surface);
-    border: 1px solid var(--border-bright);
-    border-radius: 100px;
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 600;
-    margin-bottom: 28px;
-    backdrop-filter: blur(8px);
-    letter-spacing: 0.02em;
-  }
-
-  .badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.85); }
+  .hero {
+    padding: 62px 0 48px;
   }
 
   .hero h1 {
-    font-size: clamp(36px, 6.5vw, 68px);
-    font-weight: 800;
-    letter-spacing: -0.035em;
-    line-height: 1.05;
-    margin-bottom: 20px;
-  }
-
-  .hero h1 .gradient {
-    background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 50%, #818cf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5));
+    letter-spacing: -1.5px;
   }
 
   .hero p {
-    font-size: 16px;
-    color: var(--text-dim);
-    max-width: 540px;
-    margin: 0 auto 36px;
-    line-height: 1.65;
+    font-size: 13px;
   }
 
-  .ip-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 22px;
-    background: var(--surface);
-    border: 1px solid var(--border-bright);
-    border-radius: 14px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-
-  .ip-pill:hover {
-    background: var(--surface-2);
-    border-color: var(--blue-bright);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.25);
-  }
-
-  .ip-pill .copy-icon {
-    color: var(--blue-bright);
-    font-size: 15px;
-    transition: transform 0.2s;
-  }
-
-  .ip-pill:hover .copy-icon { transform: scale(1.15); }
-
-  /* SECTION */
-  .section { padding: 40px 24px 80px; max-width: 1180px; margin: 0 auto; }
-
-  .section-header { text-align: center; margin-bottom: 56px; }
-
-  .section-header .eyebrow {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--blue-bright);
-    margin-bottom: 12px;
-  }
-
-  .section-header h2 {
-    font-size: clamp(28px, 4.5vw, 40px);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 12px;
-  }
-
-  .section-header p {
-    color: var(--text-dim);
-    font-size: 15px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  /* RANK GRID */
   .rank-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 10px;
   }
 
   .rank-card {
-    background: linear-gradient(180deg, rgba(20, 35, 78, 0.6) 0%, rgba(10, 21, 53, 0.6) 100%);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(12px);
+    padding: 15px 11px 13px;
+    border-radius: 11px;
   }
 
-  .rank-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue-bright), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .rank-card:hover {
-    border-color: var(--border-bright);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.18);
-  }
-
-  .rank-card:hover::before { opacity: 1; }
-
-  .rank-card.featured {
-    border-color: var(--border-bright);
-    background: linear-gradient(180deg, rgba(30, 50, 105, 0.7) 0%, rgba(15, 30, 70, 0.7) 100%);
-    box-shadow: 0 12px 48px rgba(59, 130, 246, 0.2);
-  }
-
-  .rank-card.featured::before {
-    opacity: 1;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-  }
-
-  .rank-card.featured::after {
-    content: '';
-    position: absolute;
-    top: -50%; right: -50%;
-    width: 100%; height: 100%;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .rank-tag {
-    position: absolute;
-    top: 20px; right: 20px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    background: linear-gradient(135deg, var(--blue), var(--cyan));
-    color: #ffffff;
-    border-radius: 100px;
-    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.5);
-  }
-
-  .rank-name {
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    margin-bottom: 6px;
-  }
-
-  .rank-desc {
-    font-size: 12.5px;
-    color: var(--text-dimmer);
-    margin-bottom: 22px;
-  }
-
-  .rank-price {
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    margin-bottom: 4px;
-    background: linear-gradient(135deg, #ffffff 0%, #a3b3d6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .rank-price span {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-dimmer);
-    margin-left: 3px;
-    -webkit-text-fill-color: var(--text-dimmer);
-  }
-
-  .rank-period {
-    font-size: 12px;
-    color: var(--text-dimmer);
-    margin-bottom: 22px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .rank-period::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-  }
-
-  .rank-features {
-    list-style: none;
-    padding: 22px 0;
-    border-top: 1px solid var(--border);
-    margin-bottom: 22px;
-    flex-grow: 1;
-  }
-
-  .rank-features li {
-    font-size: 13.5px;
-    color: var(--text-dim);
-    padding: 7px 0;
-    display: flex;
+  .rank-top {
     align-items: flex-start;
-    gap: 10px;
-    line-height: 1.5;
+    margin-bottom: 15px;
   }
 
-  .rank-features li::before {
-    content: '';
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-    margin-top: 4px;
-    border-radius: 50%;
-    background: var(--surface-2);
-    border: 1px solid var(--border-bright);
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3e%3cpath d='M2.5 6L5 8.5L9.5 4' stroke='%2360a5fa' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: center;
+  .rank-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+  }
+
+  .badge {
+    font-size: 8px;
+    padding: 5px;
+  }
+
+  .rank-card h3 {
+    font-size: 15px;
+  }
+
+  .description {
+    font-size: 10px;
+    min-height: 56px;
+  }
+
+  .price {
+    font-size: clamp(17px, 4.5vw, 22px);
   }
 
   .buy-btn {
-    display: block;
-    width: 100%;
-    padding: 13px 18px;
-    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
-    color: #ffffff;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.25s ease;
-    border: 1px solid rgba(96, 165, 250, 0.4);
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.35);
-    position: relative;
-    overflow: hidden;
+    font-size: 10px;
+    padding: 10px 3px;
   }
 
-  .buy-btn::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .buy-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.55);
-    background: linear-gradient(135deg, var(--blue-bright) 0%, var(--blue) 100%);
-  }
-
-  .buy-btn:hover::after { left: 100%; }
-  .buy-btn:active { transform: translateY(0); }
-
-  .buy-btn.outline {
-    background: rgba(59, 130, 246, 0.08);
-    color: var(--blue-bright);
-    border: 1px solid var(--border-bright);
-    box-shadow: none;
-  }
-
-  .buy-btn.outline:hover {
-    background: rgba(59, 130, 246, 0.18);
-    border-color: var(--blue-bright);
-    color: #ffffff;
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-  }
-
-  /* VOTE BANNER */
-  .vote-banner {
-    margin-top: 32px;
-    padding: 40px 36px;
-    background: linear-gradient(135deg, rgba(30, 50, 105, 0.6) 0%, rgba(15, 30, 70, 0.6) 100%);
-    border: 1px solid var(--border-bright);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-    flex-wrap: wrap;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(12px);
-  }
-
-  .vote-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -10%;
-    width: 60%; height: 200%;
-    background: radial-gradient(ellipse, rgba(34, 211, 238, 0.15) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .vote-banner:hover {
-    border-color: var(--cyan);
-    box-shadow: 0 20px 60px rgba(34, 211, 238, 0.2);
-  }
-
-  .vote-content { position: relative; z-index: 1; }
-
-  .vote-content .vote-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px; height: 40px;
-    border-radius: 11px;
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
-    font-size: 20px;
-    margin-bottom: 14px;
-    box-shadow: 0 8px 24px rgba(34, 211, 238, 0.4);
-  }
-
-  .vote-content h3 {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-
-  .vote-content p {
-    font-size: 14px;
-    color: var(--text-dim);
-    max-width: 480px;
+  .vote-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 23px 18px;
   }
 
   .vote-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 26px;
-    background: linear-gradient(135deg, var(--cyan) 0%, var(--blue) 100%);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 14px;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    box-shadow: 0 8px 28px rgba(34, 211, 238, 0.45);
-    border: 1px solid rgba(96, 165, 250, 0.5);
-    position: relative;
-    z-index: 1;
+    text-align: center;
+    width: 100%;
   }
 
-  .vote-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(34, 211, 238, 0.6);
-    filter: brightness(1.1);
+  .discord-box {
+    padding: 32px 18px;
   }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 44px 24px;
-    margin-top: 60px;
-    background: rgba(5, 10, 31, 0.6);
-    backdrop-filter: blur(8px);
+  .discord-box p {
+    font-size: 12px;
   }
 
-  .footer-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
+  .join-btn {
+    width: 100%;
+    text-align: center;
   }
 
-  .footer-text { font-size: 13px; color: var(--text-dimmer); }
-
-  .footer-links { display: flex; gap: 24px; }
-
-  .footer-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.2s ease;
-    font-weight: 500;
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
   }
-
-  .footer-links a:hover { color: var(--blue-bright); }
-
-  /* TOAST */
-  .toast {
-    position: fixed;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%) translateY(140px);
-    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
-    color: #ffffff;
-    padding: 13px 24px;
-    border-radius: 12px;
-    font-size: 13.5px;
-    font-weight: 600;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    z-index: 200;
-    pointer-events: none;
-    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5);
-    border: 1px solid rgba(96, 165, 250, 0.5);
-  }
-
-  .toast.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-up { animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
-
-  .rank-card { animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
-  .rank-card:nth-child(1) { animation-delay: 0.05s; }
-  .rank-card:nth-child(2) { animation-delay: 0.1s; }
-  .rank-card:nth-child(3) { animation-delay: 0.15s; }
-  .rank-card:nth-child(4) { animation-delay: 0.2s; }
-
-  @media (max-width: 720px) {
-    nav { padding: 14px 16px; }
-    .nav-links a { padding: 7px 11px; font-size: 13px; }
-    .nav-links a.discord span { display: none; }
-    .hero { padding: 64px 20px 48px; }
-    .hero p { font-size: 15px; }
-    .ip-pill { padding: 12px 18px; font-size: 13px; }
-    .section { padding: 24px 16px 60px; }
-    .section-header { margin-bottom: 36px; }
-    .rank-grid { grid-template-columns: 1fr; gap: 16px; }
-    .rank-card { padding: 24px 22px; }
-    .vote-banner { padding: 28px 22px; flex-direction: column; text-align: center; align-items: stretch; }
-    .vote-content .vote-icon { margin-left: auto; margin-right: auto; }
-    .vote-content p { margin: 0 auto; }
-    .vote-btn { justify-content: center; width: 100%; }
-    .footer-inner { flex-direction: column; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
-  }
-
-  @media (max-width: 380px) {
-    .logo-text { font-size: 15px; }
-    .rank-price { font-size: 30px; }
-  }
+}
 </style>
 </head>
+
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="logo">
-      <div class="logo-mark">⚡</div>
-      <div class="logo-text">Slash<span>SMP</span></div>
+<header>
+  <div class="container navbar">
+    <a class="logo" href="#">
+      ⚡ SLASH<span>SMP</span> STORE
+    </a>
+
+    <a class="discord-top"
+       href="https://discord.gg/JeKNG4wfkY"
+       target="_blank" rel="noopener noreferrer">
+      Discord ↗
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="eyebrow">✦ OFFICIAL SERVER STORE ✦</div>
+
+    <h1>LEVEL UP YOUR<br><span>ADVENTURE.</span></h1>
+
+    <p>
+      Upgrade pengalaman bermainmu di SlashSMP.
+      Pilih rank eksklusif dan jadilah bagian dari petualangan.
+    </p>
+
+    <a class="primary-btn" href="#ranks">
+      EXPLORE RANKS ↓
+    </a>
+  </section>
+
+  <!-- RANKS -->
+  <section class="section container" id="ranks">
+    <div class="section-title">
+      <h2>Choose Your Rank</h2>
+      <p>Pilih rank favoritmu dan mulai petualangan baru.</p>
     </div>
-    <div class="nav-links">
-      <a href="#ranks">Rank</a>
-      <a href="https://discord.gg/JeKNG4wfkY" target="_blank" rel="noopener" class="discord">
-        Discord <span>↗</span>
+
+    <div class="rank-grid">
+
+      <article class="rank-card popular">
+        <div class="rank-top">
+          <div class="rank-icon">⚔️</div>
+          <div class="badge">🔥 MOST POPULAR</div>
+        </div>
+
+        <h3>Slash+</h3>
+        <p class="description">
+          Rank eksklusif untuk menemani petualanganmu.
+        </p>
+
+        <div class="price-area">
+          <div class="price-label">ONE-TIME PRICE</div>
+          <div class="price">Rp15.000</div>
+        </div>
+
+        <a class="buy-btn"
+           href="https://sociabuzz.com/waf76_4/tribe"
+           target="_blank" rel="noopener noreferrer">
+          BELI SEKARANG ↗
+        </a>
+      </article>
+
+      <article class="rank-card">
+        <div class="rank-top">
+          <div class="rank-icon">🔥</div>
+        </div>
+
+        <h3>The Warlord</h3>
+        <p class="description">
+          Tunjukkan dominasi dan tingkatkan statusmu.
+        </p>
+
+        <div class="price-area">
+          <div class="price-label">ONE-TIME PRICE</div>
+          <div class="price">Rp50.000</div>
+        </div>
+
+        <a class="buy-btn"
+           href="https://sociabuzz.com/waf76_4/tribe"
+           target="_blank" rel="noopener noreferrer">
+          BELI SEKARANG ↗
+        </a>
+      </article>
+
+      <article class="rank-card king">
+        <div class="rank-top">
+          <div class="rank-icon">👑</div>
+          <div class="badge">PREMIUM</div>
+        </div>
+
+        <h3>The King</h3>
+        <p class="description">
+          Pilihan premium untuk para penguasa SlashSMP.
+        </p>
+
+        <div class="price-area">
+          <div class="price-label">ONE-TIME PRICE</div>
+          <div class="price">Rp75.000</div>
+        </div>
+
+        <a class="buy-btn"
+           href="https://sociabuzz.com/waf76_4/tribe"
+           target="_blank" rel="noopener noreferrer">
+          BELI SEKARANG ↗
+        </a>
+      </article>
+
+      <article class="rank-card">
+        <div class="rank-top">
+          <div class="rank-icon">✦</div>
+        </div>
+
+        <h3>Custom Title</h3>
+        <p class="description">
+          Khusus custom title saja, tanpa tambahan rank.
+        </p>
+
+        <div class="price-area">
+          <div class="price-label">ONE-TIME PRICE</div>
+          <div class="price">Rp25.000</div>
+        </div>
+
+        <a class="buy-btn"
+           href="https://sociabuzz.com/waf76_4/tribe"
+           target="_blank" rel="noopener noreferrer">
+          BELI SEKARANG ↗
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- FREE RANK VOTE -->
+  <section class="vote-section container">
+    <div class="vote-box">
+      <div>
+        <div class="vote-label">SUPPORT THE SERVER</div>
+        <h2>Ingin Rank <span>Gratis?</span></h2>
+        <p>
+          Vote SlashSMP melalui Minecraft-MP dan dukung komunitas kita.
+          Cek ketentuan server untuk mengetahui reward vote yang tersedia.
+        </p>
+      </div>
+
+      <a class="vote-btn"
+         href="https://minecraft-mp.com/server/364808/vote/"
+         target="_blank" rel="noopener noreferrer">
+        🗳 VOTE SEKARANG ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- DISCORD -->
+  <section class="discord-section container">
+    <div class="discord-box">
+      <div class="discord-icon">💬</div>
+
+      <h2>Join Our <span>Discord</span></h2>
+
+      <p>
+        Bergabung dengan komunitas SlashSMP untuk mendapatkan
+        informasi server, update terbaru, dan berinteraksi dengan
+        pemain lainnya.
+      </p>
+
+      <a class="join-btn"
+         href="https://discord.gg/JeKNG4wfkY"
+         target="_blank" rel="noopener noreferrer">
+        JOIN DISCORD ↗
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-content">
+    <div>
+      <div class="footer-logo">⚡ SLASH<span>SMP</span> STORE</div>
+
+      <p class="footer-note">
+        © 2026 SlashSMP. All rights reserved.<br>
+        Setelah membayar, kirim bukti pembayaran dan username Minecraft
+        ke staff melalui Discord untuk verifikasi.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <a href="https://discord.gg/JeKNG4wfkY"
+         target="_blank" rel="noopener noreferrer">
+        Discord
+      </a>
+
+      <a href="https://minecraft-mp.com/server/364808/vote/"
+         target="_blank" rel="noopener noreferrer">
+        Vote Server
       </a>
     </div>
   </div>
-</nav>
+</footer>
 
-<section class="hero">
-  <div class="badge fade-up">
-    <span class="badge-dot"></span>
-    Server Online • 24/7
-  </div>
-  <h1 class="fade-up">
-    Tingkatkan Rankmu di<br>
-    <span class="gradient">SlashSMP</span>
-  </h1>
-  <p class="fade-up">
-    Dapatkan akses eksklusif, fitur premium, dan title spesial. Pilih rank yang paling cocok untuk gaya bermainmu.
-  </p>
-  <div class="ip-pill fade-up" onclick="copyIP()">
-    <span>slashsmp.my.id</span>
-    <span class="copy-icon">📋</span>
-  </div>
-</section>
+</body>
+</html>
 
-<section class="section" id="ranks">
-  <div class="section-header">
-    <div class="eyebrow">Rank Store</div>
-    <h2>Pilih Rank Kamu</h2>
-    <p>Harga terjangkau, benefit maksimal, dan berlaku permanen.</p>
-  </div>
-
-  <div class="rank-grid">
-
-    <div class="rank-card">
-      <div class="rank-name">Slash+</div>
-      <div class="rank-desc">Cocok untuk pemula</div>
-      <div class="rank-price">Rp 15.000<span>,00</span></div>
-      <div class="rank-period">Permanent</div>
-      <ul class="rank-features">
-        <li>Prefix [Slash+] di chat</li>
-        <li>Akses /kit slashplus</li>
-        <li>2x Home</li>
-        <li>Warna chat hijau</li>
-      </ul>
-      <a href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener" class="buy-btn outline">
-        Beli Sekarang
-      </a>
-    </div>
-
-    <div class="rank-card">
-      <div class="rank-name">The Warlord</div>
-      <div class="rank-desc">Untuk pejuang sejati</div>
-      <div class="rank-price">Rp 50.000<span>,00</span></div>
-      <div class="rank-period">Permanent</div>
-      <ul class="rank-features">
-        <li>Semua fitur Slash+</li>
-        <li>Prefix [Warlord]</li>
-        <li>Akses /kit warlord</li>
-        <li>5x Home + /fly di lobby</li>
-        <li>Warna chat merah</li>
-      </ul>
-      <a href="https://sociabuzz.com/waf76_4/tribe" target="_blank" rel="noopener" class="buy-btn outline">
-        Beli Sekarang
-      </a>
-    </div>
-
-    <div class="rank-card featured">
-      <div class="rank-tag">Popular</div>
-      <div class="rank-name">The King</div>
-      <div class="rank-desc">Penguasa server</div>
-      <div class="rank-price">Rp 75.000<span>,00</span></div>
-      <div class="rank-period">Permanent</div>
-      <ul class="rank-features">
-        <li>Semua fitur The Warlord</li>
-        <li>Prefix [King]</li>
-        <li>Akses /kit king</li>
-        <li>10x Home + /fly</li>
-        <l
